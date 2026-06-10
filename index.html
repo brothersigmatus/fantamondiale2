@@ -318,9 +318,8 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-
     <div class="sec-title" style="color:var(--indigo)">🔧 Pannello Admin</div>
     <div class="adm-sec">
       <div class="adm-title">📅 Nuova Giornata</div>
-      <div class="form-row c2">
+      <div class="form-row">
         <div><label>Nome</label><input type="text" id="a-md-name" placeholder="es. Giornata 1"></div>
-        <div><label>Data rif.</label><input type="date" id="a-md-date"></div>
       </div>
       <button class="btn btn-sm btn-indigo" onclick="aAddMD()">+ Aggiungi Giornata</button>
       <div id="a-md-list" style="margin-top:.7rem"></div>
@@ -333,12 +332,11 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-
         <div><label>✈️ Ospite</label><select id="a-m-away"></select></div>
       </div>
       <div class="form-row c2">
-        <div><label>Ora (locale)</label><input type="time" id="a-m-time" value="21:00"></div>
-        <div><label>Fase</label><input type="text" id="a-m-group" placeholder="Gruppo A"></div>
-      </div>
-      <div class="form-row">
-        <label class="form-toggle"><input type="checkbox" id="a-m-ko"> Fase eliminazione diretta (solo 90 min)</label>
-        <label class="form-toggle"><input type="checkbox" id="a-m-fin"> 🏆 È la finale — nessun pronostico</label>
+        <div><label>Fase / Girone</label><input type="text" id="a-m-group" placeholder="es. Gruppo A"></div>
+        <div style="display:flex;flex-direction:column;justify-content:flex-end;gap:.5rem">
+          <label class="form-toggle"><input type="checkbox" id="a-m-ko"> Eliminazione diretta (solo 90 min)</label>
+          <label class="form-toggle"><input type="checkbox" id="a-m-fin"> 🏆 È la finale</label>
+        </div>
       </div>
       <button class="btn btn-sm btn-indigo" onclick="aAddMatch()">+ Aggiungi Partita</button>
     </div>
@@ -799,13 +797,14 @@ function renderLB(){
 
 // ── ADMIN: MATCHDAYS ──
 async function aAddMD(){
-  const nm=v('a-md-name'),dt=v('a-md-date');
+  const nm=v('a-md-name');
   if(!nm){toast('Inserisci un nome!');return}
+  const mds=getMDs(); // not used, just for cache check
   setLoad(true);
-  const{error}=await sb.from('matchdays').insert({id:'md_'+Date.now(),name:nm,ref_date:dt||null});
+  const{error}=await sb.from('matchdays').insert({id:'md_'+Date.now(),name:nm,ref_date:null});
   if(error){toast('Errore: '+error.message);setLoad(false);return}
   await loadAll(); setLoad(false);
-  el('a-md-name').value='';el('a-md-date').value='';
+  el('a-md-name').value='';
   aRenderMDs();aPopSelects();toast('Giornata aggiunta 📅');
 }
 async function aDelMD(id){
