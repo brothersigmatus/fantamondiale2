@@ -332,9 +332,8 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-
         <div><label>🏠 Casa</label><select id="a-m-home"></select></div>
         <div><label>✈️ Ospite</label><select id="a-m-away"></select></div>
       </div>
-      <div class="form-row c3">
-        <div><label>Data</label><input type="date" id="a-m-date"></div>
-        <div><label>Ora</label><input type="time" id="a-m-time" value="21:00"></div>
+      <div class="form-row c2">
+        <div><label>Ora (locale)</label><input type="time" id="a-m-time" value="21:00"></div>
         <div><label>Fase</label><input type="text" id="a-m-group" placeholder="Gruppo A"></div>
       </div>
       <div class="form-row">
@@ -609,7 +608,7 @@ function cardHTML(m,pred,st){
   else if(m.is_knockout) badges+=`<span class="mc-badge badge-ko">⏱ Solo 90'</span>`;
   const cdHtml=hasR
     ?`<div class="mc-cd done" data-countdown="${m.match_date}" data-mid="${m.id}">✅ Terminata</div>`
-    :`<div class="mc-cd ${st.cls}" data-countdown="${m.match_date}" data-mid="${m.id}">${st.lk?'🔒':'🟢'} ${st.tx}</div>`;
+    :`<div class="mc-cd open" data-countdown="${m.match_date}" data-mid="${m.id}">🟢 Aperta</div>`;
   let body='';
   if(m.is_finale){
     body=`<div class="finale-msg"><div class="fi">🏆</div><p>La finale non si gioca — goditi la partita!</p></div>`;
@@ -644,10 +643,10 @@ function cardHTML(m,pred,st){
       <div class="pred-saved" id="sv-${m.id}"></div>
     </div>`;
   }
-  return `<div class="match-card${st.lk&&!hasR?' locked':''}${m.is_finale?' finale':''}">
+  return `<div class="match-card${!hasR?' ':''}${m.is_finale?' finale':''}">
     <div class="mc-head">
       <div><div class="mc-phase">${m.phase||''}</div>${badges}</div>
-      <div class="mc-time-wrap"><div class="mc-date">${dS} · ${tS}</div>${cdHtml}</div>
+      <div class="mc-time-wrap">${cdHtml}</div>
     </div>
     <div class="mc-teams">
       <div class="team"><div class="tf">${m.home_flag}</div><div class="tn">${m.home_name}</div></div>
@@ -848,15 +847,17 @@ function aPopSelects(){
 // ── ADMIN: ADD MATCH ──
 async function aAddMatch(){
   const mdId=v('a-m-md'),hN=v('a-m-home'),aN=v('a-m-away');
-  const dt=v('a-m-date'),tm=el('a-m-time').value||'21:00',gr=v('a-m-group');
-  if(!mdId||!hN||!aN||!dt){toast('Compila tutti i campi!');return}
+  const gr=v('a-m-group');
+  if(!mdId||!hN||!aN){toast('Compila tutti i campi!');return}
   if(hN===aN){toast('Scegli due squadre diverse!');return}
   const hT=TEAMS.find(t=>t.n===hN),aT=TEAMS.find(t=>t.n===aN);
+  // Data fissa lontana: i pronostici restano aperti finché non inserisci il risultato
+  const matchDate='2099-01-01T00:00:00';
   setLoad(true);
   const{error}=await sb.from('matches').insert({
     id:'m_'+Date.now(),matchday_id:mdId,
     home_name:hT.n,home_flag:hT.f,away_name:aT.n,away_flag:aT.f,
-    phase:gr,match_date:`${dt}T${tm}:00`,
+    phase:gr,match_date:matchDate,
     is_knockout:el('a-m-ko').checked,is_finale:el('a-m-fin').checked,
     result_home:null,result_away:null
   });
