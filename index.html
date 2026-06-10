@@ -747,8 +747,16 @@ async function saveBonusPick(field,val){
   let pick=DB.bonusPicks.find(x=>x.user_id===CU_ID);
   if(!pick){pick={user_id:CU_ID,campione:null,quarta:null};DB.bonusPicks.push(pick);}
   pick[field]=val;
-  await sb.from('bonus_picks').upsert({user_id:CU_ID,campione:pick.campione,quarta:pick.quarta},{onConflict:'user_id'});
-  toast('Scelta salvata ✓'); renderBonus();
+  const{error}=await sb.from('bonus_picks').upsert(
+    {user_id:CU_ID,campione:pick.campione,quarta:pick.quarta},
+    {onConflict:'user_id',ignoreDuplicates:false}
+  );
+  if(error){
+    toast('❌ Errore salvataggio: '+error.message);
+    console.error('bonus_picks upsert error:',error);
+    return;
+  }
+  toast('✓ Scelta salvata!'); renderBonus();
 }
 
 // ── LEADERBOARD ──
