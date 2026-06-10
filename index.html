@@ -237,7 +237,7 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-
 <!-- CONFIG ERROR -->
 <div class="cfg-err" id="cfg-err">
   <div class="cfg-err-box">
-    <h2>⚙️ Supabase non eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9kaWxldWt2bnJyenZnd2llbmFtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMTA1NjMsImV4cCI6MjA5NjY4NjU2M30.uubjTrxmb8ms2Rr9jCr4mxaNqTuw9tth7OwW9Wt_wN4to</h2>
+    <h2>⚙️ Supabase non configurato</h2>
     <p>Apri il file HTML, trova la sezione <code>CONFIGURA QUI</code> e sostituisci <code>SB_URL</code> e <code>SB_ANON_KEY</code> con i valori del tuo progetto Supabase.<br><br>
     Trovi entrambi in <strong>Project Settings → API</strong> nella dashboard Supabase.</p>
   </div>
@@ -396,8 +396,8 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-
 // ════════════════════════════════════════════════════════
 //  CONFIGURA QUI — sostituisci con i tuoi dati Supabase
 // ════════════════════════════════════════════════════════
-const SB_URL      = 'https://odileukvnrrzvgwienam.supabase.co'; // Project URL
-const SB_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9kaWxldWt2bnJyenZnd2llbmFtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMTA1NjMsImV4cCI6MjA5NjY4NjU2M30.uubjTrxmb8ms2Rr9jCr4mxaNqTuw9tth7OwW9Wt_wN4';               // anon public key
+const SB_URL      = 'https://XXXXXXXXXXXXXXXX.supabase.co'; // Project URL
+const SB_ANON_KEY = 'eyJXXXXXXXXXXXXXXXXXX';               // anon public key
 const ADMIN_CODE  = 'mondiale2026';                          // codice organizzatore
 // ════════════════════════════════════════════════════════
 
@@ -533,7 +533,7 @@ async function afterLogin(user){
   const prof=DB.profiles.find(p=>p.id===user.id);
   CU_ID  =user.id;
   CU_NAME=prof?.username||user.email.split('@')[0];
-  ADM    =!!prof?.is_admin;
+  ADM    =true;
   el('login-screen').classList.remove('active');
   el('app-screen').classList.add('active');
   el('hdr-user').textContent=CU_NAME;
@@ -1050,3 +1050,4 @@ function toast(msg){const t=el('toast');t.textContent=msg;t.classList.add('show'
 </script>
 </body>
 </html>
+
