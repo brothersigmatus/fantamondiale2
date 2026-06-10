@@ -416,31 +416,28 @@ const FOURTH_TIER = [
   {n:"Giordania",f:"🇯🇴"},{n:"Capo Verde",f:"🇨🇻"},{n:"Ghana",f:"🇬🇭"},
   {n:"Curaçao",f:"🇨🇼"},{n:"Haiti",f:"🇭🇹"},{n:"Nuova Zelanda",f:"🇳🇿"},
   {n:"Bosnia ed Erzegovina",f:"🇧🇦"},{n:"Svezia",f:"🇸🇪"},{n:"Turchia",f:"🇹🇷"},
-  {n:"Repubblica Ceca",f:"🇨🇿"},{n:"Rep. Dem. Congo",f:"🇨🇩"},{n:"Iraq",f:"🇮🇶"},
+  {n:"Repubblica Ceca",f:"🇨🇿"},{n:"RD del Congo",f:"🇨🇩"},{n:"Iraq",f:"🇮🇶"},
 ];
 const ROUND_LABELS = ["Eliminata ai gironi","Superate le fasi a gironi","Ottavi di finale","Quarti di finale","Semifinale","Finalista","Campione 🏆"];
 const quartaPts = r => r<=0?0:3+Math.max(0,r-1)*2;
 
 const TEAMS = [
-  {n:"Arabia Saudita",f:"🇸🇦"},{n:"Argentina",f:"🇦🇷"},{n:"Australia",f:"🇦🇺"},
-  {n:"Austria",f:"🇦🇹"},{n:"Belgio",f:"🇧🇪"},{n:"Bolivia",f:"🇧🇴"},
-  {n:"Bosnia ed Erzegovina",f:"🇧🇦"},{n:"Brasile",f:"🇧🇷"},{n:"Camerun",f:"🇨🇲"},
-  {n:"Canada",f:"🇨🇦"},{n:"Capo Verde",f:"🇨🇻"},{n:"Cile",f:"🇨🇱"},
-  {n:"Colombia",f:"🇨🇴"},{n:"Corea del Sud",f:"🇰🇷"},{n:"Costa Rica",f:"🇨🇷"},
-  {n:"Croazia",f:"🇭🇷"},{n:"Curaçao",f:"🇨🇼"},{n:"Danimarca",f:"🇩🇰"},
+  {n:"Algeria",f:"🇩🇿"},{n:"Arabia Saudita",f:"🇸🇦"},{n:"Argentina",f:"🇦🇷"},
+  {n:"Australia",f:"🇦🇺"},{n:"Austria",f:"🇦🇹"},{n:"Belgio",f:"🇧🇪"},
+  {n:"Bosnia ed Erzegovina",f:"🇧🇦"},{n:"Brasile",f:"🇧🇷"},{n:"Canada",f:"🇨🇦"},
+  {n:"Capo Verde",f:"🇨🇻"},{n:"Colombia",f:"🇨🇴"},{n:"Corea del Sud",f:"🇰🇷"},
+  {n:"Costa d'Avorio",f:"🇨🇮"},{n:"Croazia",f:"🇭🇷"},{n:"Curaçao",f:"🇨🇼"},
   {n:"Ecuador",f:"🇪🇨"},{n:"Egitto",f:"🇪🇬"},{n:"Francia",f:"🇫🇷"},
-  {n:"Galles",f:"🏴󠁧󠁢󠁷󠁬󠁳󠁿"},{n:"Germania",f:"🇩🇪"},{n:"Ghana",f:"🇬🇭"},
-  {n:"Giappone",f:"🇯🇵"},{n:"Giordania",f:"🇯🇴"},{n:"Haiti",f:"🇭🇹"},
-  {n:"Inghilterra",f:"🏴󠁧󠁢󠁥󠁮󠁧󠁿"},{n:"Iran",f:"🇮🇷"},{n:"Iraq",f:"🇮🇶"},
-  {n:"Italia",f:"🇮🇹"},{n:"Marocco",f:"🇲🇦"},{n:"Messico",f:"🇲🇽"},
-  {n:"Nigeria",f:"🇳🇬"},{n:"Nuova Zelanda",f:"🇳🇿"},{n:"Olanda",f:"🇳🇱"},
-  {n:"Panama",f:"🇵🇦"},{n:"Paraguay",f:"🇵🇾"},{n:"Perù",f:"🇵🇪"},
-  {n:"Polonia",f:"🇵🇱"},{n:"Portogallo",f:"🇵🇹"},{n:"Qatar",f:"🇶🇦"},
-  {n:"Rep. Dem. Congo",f:"🇨🇩"},{n:"Repubblica Ceca",f:"🇨🇿"},{n:"Scozia",f:"🏴󠁧󠁢󠁳󠁣󠁴󠁿"},
-  {n:"Senegal",f:"🇸🇳"},{n:"Serbia",f:"🇷🇸"},{n:"Spagna",f:"🇪🇸"},
+  {n:"Germania",f:"🇩🇪"},{n:"Ghana",f:"🇬🇭"},{n:"Giappone",f:"🇯🇵"},
+  {n:"Giordania",f:"🇯🇴"},{n:"Haiti",f:"🇭🇹"},{n:"Inghilterra",f:"🏴󠁧󠁢󠁥󠁮󠁧󠁿"},
+  {n:"Iran",f:"🇮🇷"},{n:"Iraq",f:"🇮🇶"},{n:"Marocco",f:"🇲🇦"},
+  {n:"Messico",f:"🇲🇽"},{n:"Norvegia",f:"🇳🇴"},{n:"Nuova Zelanda",f:"🇳🇿"},
+  {n:"Olanda",f:"🇳🇱"},{n:"Panama",f:"🇵🇦"},{n:"Paraguay",f:"🇵🇾"},
+  {n:"Portogallo",f:"🇵🇹"},{n:"Qatar",f:"🇶🇦"},{n:"RD del Congo",f:"🇨🇩"},
+  {n:"Repubblica Ceca",f:"🇨🇿"},{n:"Scozia",f:"🏴󠁧󠁢󠁳󠁣󠁴󠁿"},{n:"Senegal",f:"🇸🇳"},
+  {n:"Spagna",f:"🇪🇸"},{n:"Stati Uniti",f:"🇺🇸"},{n:"Sudafrica",f:"🇿🇦"},
   {n:"Svezia",f:"🇸🇪"},{n:"Svizzera",f:"🇨🇭"},{n:"Tunisia",f:"🇹🇳"},
-  {n:"Turchia",f:"🇹🇷"},{n:"Ucraina",f:"🇺🇦"},{n:"Uruguay",f:"🇺🇾"},
-  {n:"USA",f:"🇺🇸"},{n:"Venezuela",f:"🇻🇪"},
+  {n:"Turchia",f:"🇹🇷"},{n:"Uruguay",f:"🇺🇾"},{n:"Uzbekistan",f:"🇺🇿"},
 ].sort((a,b)=>a.n.localeCompare(b.n));
 
 // ── STATE ──
