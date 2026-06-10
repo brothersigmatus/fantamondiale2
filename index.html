@@ -799,7 +799,6 @@ function renderLB(){
 async function aAddMD(){
   const nm=v('a-md-name');
   if(!nm){toast('Inserisci un nome!');return}
-  const mds=getMDs(); // not used, just for cache check
   setLoad(true);
   const{error}=await sb.from('matchdays').insert({id:'md_'+Date.now(),name:nm,ref_date:null});
   if(error){toast('Errore: '+error.message);setLoad(false);return}
